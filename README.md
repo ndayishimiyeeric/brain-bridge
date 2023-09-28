@@ -1,1 +1,1 @@
-# brain-bridge
+# Brain Bridge
