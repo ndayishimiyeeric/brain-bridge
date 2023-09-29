@@ -23,6 +23,7 @@ import {
   CreateCourseSchemaType,
 } from "@/lib/varidators/course";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 type Props = {};
 
@@ -42,7 +43,7 @@ function CreateCoursePage({}: Props) {
       const { data } = await axios.post("/api/courses", values);
       router.push(`/teacher/courses/${data.id}`);
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
