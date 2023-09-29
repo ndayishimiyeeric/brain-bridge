@@ -15,6 +15,8 @@ export const UpdateCourseSchema = z.object({
   description: z.string().min(3, {
     message: "Description must be at least 3 characters long",
   }).optional(),
+  imageUrl: z.string().url().optional(),
+  categoryId: z.string().uuid().optional(),
 })
 
 export type UpdateCourseSchemaType = z.infer<typeof UpdateCourseSchema>;

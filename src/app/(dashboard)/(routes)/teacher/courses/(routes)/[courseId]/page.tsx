@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import React from "react";
 import FormTitle from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
+import ImageForm from "./_components/image-form";
+import CategoryForm from "./_components/category-form";
 
 type Props = {
   params: {
@@ -24,6 +26,12 @@ const CoursePage = async ({ params }: Props) => {
     where: {
       id: params.courseId,
       userId,
+    },
+  });
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
     },
   });
 
@@ -62,6 +70,15 @@ const CoursePage = async ({ params }: Props) => {
           </div>
           <FormTitle initialData={course} courseId={course.id} />
           <DescriptionForm initialData={course} courseId={course.id} />
+          <ImageForm initialData={course} courseId={course.id} />
+          <CategoryForm
+            initialData={course}
+            courseId={course.id}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
         </div>
       </div>
     </div>

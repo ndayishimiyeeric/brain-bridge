@@ -23,13 +23,15 @@ import {
 } from "@/lib/varidators/course";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { Combobox } from "@/components/ui/combobox";
 
 type Props = {
   initialData: Course;
   courseId: string;
+  options: { label: string; value: string }[];
 };
 
-const DescriptionForm = ({ initialData, courseId }: Props) => {
+const CategoryForm = ({ initialData, courseId, options }: Props) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = React.useState(false);
 
@@ -40,7 +42,7 @@ const DescriptionForm = ({ initialData, courseId }: Props) => {
   const form = useForm<UpdateCourseSchemaType>({
     resolver: zodResolver(UpdateCourseSchema),
     defaultValues: {
-      description: initialData?.description || "",
+      categoryId: initialData?.categoryId || "",
     },
   });
 
@@ -60,17 +62,21 @@ const DescriptionForm = ({ initialData, courseId }: Props) => {
     }
   };
 
+  const selectedOption = options.find(
+    (category) => category.value === initialData.categoryId
+  );
+
   return (
     <div className="mt-6 bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course description
+        Course category
         <Button variant="ghost" onClick={toggleEditing}>
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2  " />
-              Edit description
+              Edit category
             </>
           )}
         </Button>
@@ -79,10 +85,10 @@ const DescriptionForm = ({ initialData, courseId }: Props) => {
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.description && "text-slate-500 italic"
+            !initialData.categoryId && "text-slate-500 italic"
           )}
         >
-          {initialData.description || "No description provided"}
+          {selectedOption?.label || "No category provided"}
         </p>
       )}
 
@@ -93,15 +99,15 @@ const DescriptionForm = ({ initialData, courseId }: Props) => {
             className="space-y-4 mt-4"
           >
             <FormField
-              name="description"
+              name="categoryId"
               control={form.control}
               render={({ field, formState }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea
-                      disabled={isSubmitting || !isEditing}
+                    <Combobox
+                      options={...options}
                       {...field}
-                      placeholder="Course description"
+                      placeholder="category"
                     />
                   </FormControl>
                   <FormMessage />
@@ -124,4 +130,4 @@ const DescriptionForm = ({ initialData, courseId }: Props) => {
   );
 };
 
-export default DescriptionForm;
+export default CategoryForm;
