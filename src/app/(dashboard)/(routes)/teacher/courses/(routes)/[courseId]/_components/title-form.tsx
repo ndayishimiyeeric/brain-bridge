@@ -2,6 +2,10 @@
 
 import React from "react";
 import axios from "axios";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Pencil } from "lucide-react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -17,10 +21,6 @@ import {
   CreateCourseSchema,
   CreateCourseSchemaType,
 } from "@/lib/varidators/course";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Pencil } from "lucide-react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 type Props = {
   initialData: {
@@ -50,7 +50,10 @@ const TitleForm = ({ initialData, courseId }: Props) => {
       toast.success("Course updated successfully", { duration: 5000 });
       toggleEditing();
       router.refresh();
-    } catch (error) {
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        toast.error(error.response.data.error);
+      }
       toast.error("Something went wrong");
     }
   };
@@ -93,6 +96,7 @@ const TitleForm = ({ initialData, courseId }: Props) => {
             <div className="flex items-center gap-x-2 justify-end">
               <Button
                 className="bg-[#0369a1] hover:bg-[#0369a1]/80"
+                type="submit"
                 disabled={isSubmitting || !isValid}
               >
                 Save

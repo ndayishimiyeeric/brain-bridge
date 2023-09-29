@@ -42,6 +42,7 @@ function CreateCoursePage({}: Props) {
     try {
       const { data } = await axios.post("/api/courses", values);
       router.push(`/teacher/courses/${data.id}`);
+      toast.success("Course created successfully", { duration: 5000 });
     } catch (error) {
       toast.error("Something went wrong");
     }
