@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { CreateCourseSchema } from "@/lib/varidators/course";
+import { CreateCourseSchema, UpdateCourseSchema } from "@/lib/varidators/course";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
@@ -8,7 +8,7 @@ export async function PATCH(req: Request, { params }: { params: { courseId: stri
   try {
     const { userId } = auth();
     const payload = await req.json();
-    const { title } = CreateCourseSchema.parse(payload);
+    const { title, description } = UpdateCourseSchema.parse(payload);
     const { courseId } = params;
 
 
@@ -23,6 +23,7 @@ export async function PATCH(req: Request, { params }: { params: { courseId: stri
       },
       data: {
         title,
+        description,
       },
     })
 

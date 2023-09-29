@@ -7,3 +7,14 @@ export const CreateCourseSchema = z.object({
 });
 
 export type CreateCourseSchemaType = z.infer<typeof CreateCourseSchema>;
+
+export const UpdateCourseSchema = z.object({
+  title: z.string().min(3, {
+    message: "Title must be at least 3 characters long",
+  }).optional(),
+  description: z.string().min(3, {
+    message: "Description must be at least 3 characters long",
+  }).optional(),
+})
+
+export type UpdateCourseSchemaType = z.infer<typeof UpdateCourseSchema>;
