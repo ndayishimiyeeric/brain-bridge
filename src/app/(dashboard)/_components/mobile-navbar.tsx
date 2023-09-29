@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "lucide-react";
+import { Menu, Table2 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SideBar from "./side-bar";
 
@@ -9,7 +9,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = () => {
   return (
     <Sheet>
       <SheetTrigger className="md:hidden pr-4 hover:opacity-75 transition">
-        <Menu />
+        <Table2 />
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-white">
         <SideBar />

@@ -8,7 +8,7 @@ const SideBar: React.FC<SideBarProps> = () => {
   return (
     <div className="h-full border-r flex flex-col overflow-auto bg-white shadow-sm">
       <div className="p-6">
-        <Logo width={25} height={25} />
+        <Logo width={200} height={200} />
       </div>
       <div className="flex flex-col w-full">
         <SidebarRoutes />

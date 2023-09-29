@@ -5,14 +5,9 @@ import React from "react";
 type LogoProps = {
   width?: number;
   height?: number;
-  brandClassName?: string;
 };
 
-const Logo: React.FC<LogoProps> = ({
-  width = 30,
-  height = 30,
-  brandClassName,
-}) => {
+const Logo: React.FC<LogoProps> = ({ width = 30, height = 30 }) => {
   return (
     <div className="flex items-center ">
       <Image
@@ -22,14 +17,6 @@ const Logo: React.FC<LogoProps> = ({
         height={height}
         className="select-none"
       />
-      <span
-        className={cn(
-          "text-[#3584e4] select-none text-lg tracking-tighter leading-tight -mb-2",
-          brandClassName
-        )}
-      >
-        Brainbridge
-      </span>
     </div>
   );
 };
