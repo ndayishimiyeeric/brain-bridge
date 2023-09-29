@@ -17,6 +17,7 @@ export const UpdateCourseSchema = z.object({
   }).optional(),
   imageUrl: z.string().url().optional(),
   categoryId: z.string().uuid().optional(),
+  price: z.coerce.number()
 })
 
 export type UpdateCourseSchemaType = z.infer<typeof UpdateCourseSchema>;

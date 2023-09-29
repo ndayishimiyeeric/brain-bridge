@@ -8,7 +8,7 @@ export async function PATCH(req: Request, { params }: { params: { courseId: stri
   try {
     const { userId } = auth();
     const payload = await req.json();
-    const { title, description, imageUrl,categoryId } = UpdateCourseSchema.parse(payload);
+    const { title, description, imageUrl,categoryId, price } = UpdateCourseSchema.parse(payload);
     const { courseId } = params;
 
 
@@ -26,6 +26,7 @@ export async function PATCH(req: Request, { params }: { params: { courseId: stri
         description,
         imageUrl,
         categoryId,
+        price,
       },
     })
 
