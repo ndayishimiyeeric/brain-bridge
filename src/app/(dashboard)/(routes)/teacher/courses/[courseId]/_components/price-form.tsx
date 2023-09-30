@@ -21,9 +21,8 @@ import {
   UpdateCourseSchema,
   UpdateCourseSchemaType,
 } from "@/lib/varidators/course";
-import {cn, formatPrice} from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import {Input} from "@/components/ui/input";
+import { cn, formatPrice } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 type Props = {
   initialData: Course;
@@ -83,7 +82,9 @@ const PriceForm = ({ initialData, courseId }: Props) => {
             !initialData.price && "text-slate-500 italic"
           )}
         >
-          {initialData.price ? formatPrice(initialData.price) : "No price provided"}
+          {initialData.price
+            ? formatPrice(initialData.price)
+            : "No price provided"}
         </p>
       )}
 
