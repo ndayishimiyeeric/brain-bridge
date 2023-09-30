@@ -21,3 +21,11 @@ export const UpdateCourseSchema = z.object({
 })
 
 export type UpdateCourseSchemaType = z.infer<typeof UpdateCourseSchema>;
+
+export const CreateChapterSchema = z.object({
+  title: z.string().min(3, {
+    message: "Title must be at least 3 characters long",
+  }),
+});
+
+export type CreateChapterSchemaType = z.infer<typeof CreateChapterSchema>;

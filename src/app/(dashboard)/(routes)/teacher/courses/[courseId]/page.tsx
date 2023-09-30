@@ -15,6 +15,7 @@ import ImageForm from "./_components/image-form";
 import CategoryForm from "./_components/category-form";
 import PriceForm from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/_components/price-form";
 import AttachmentForm from "./_components/attachment-form";
+import ChapterForm from "./_components/chapter-form";
 
 type Props = {
   params: {
@@ -40,6 +41,11 @@ const CoursePage = async ({ params }: Props) => {
           createdAt: "asc",
         },
       },
+      chapters: {
+        orderBy: {
+          position: "asc",
+        },
+      },
     },
   });
 
@@ -59,6 +65,7 @@ const CoursePage = async ({ params }: Props) => {
     course.price,
     course.imageUrl,
     course.categoryId,
+    course.chapters.some((chapter) => chapter.isPublished),
   ];
 
   const totalFields = requiredFields.length;
@@ -100,7 +107,7 @@ const CoursePage = async ({ params }: Props) => {
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl">Course chapters</h2>
             </div>
-            <div>TODO:Chapters</div>
+            <ChapterForm initialData={course} courseId={course.id} />
           </div>
 
           <div>
