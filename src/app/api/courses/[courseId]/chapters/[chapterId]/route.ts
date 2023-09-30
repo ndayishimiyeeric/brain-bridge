@@ -2,6 +2,12 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server"
 import { ZodError } from "zod"
+import Mux from "@mux/mux-node";
+
+const { Video } = new Mux(
+  process.env.MUX_TOKEN_ID!,
+  process.env.MUX_TOKEN_SECRET!
+);
 
 export async function PATCH(req:Request, { params }: { params: { courseId: string, chapterId: string } }) {
   try {
@@ -33,6 +39,37 @@ export async function PATCH(req:Request, { params }: { params: { courseId: strin
         ...values,
       }
     })
+
+    if (values.videoUrl) {
+      const existingVideoData = await db.muxData.findFirst({
+        where: {
+          chapterId,
+        }
+      })
+
+      if (existingVideoData) {
+        await Video.Assets.del(existingVideoData.assetId!);
+        await db.muxData.delete({
+          where: {
+            id: existingVideoData.id,
+          }
+        })
+      }
+
+      const asset = await Video.Assets.create({
+        input: values.videoUrl,
+        playback_policy: "public",
+        test: false,
+      })
+
+      await db.muxData.create({
+        data: {
+          assetId: asset.id,
+          playbackId: asset?.playback_ids?.[0]?.id,
+          chapterId
+        }
+      })
+    }
 
     return NextResponse.json(chapter, {status: 200});
   } catch (error) {

@@ -38,6 +38,7 @@ export const UpdateChapterSchema = z.object({
     message: "Description must be at least 3 characters long",
   }).optional(),
   isFree: z.boolean().default(false).optional(),
+  videoUrl: z.string().url().optional(),
 });
 
 export type UpdateChapterSchemaType = z.infer<typeof UpdateChapterSchema>;
