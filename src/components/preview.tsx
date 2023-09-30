@@ -8,7 +8,7 @@ interface Props {
   value: string;
 }
 
-export function Review({ value }: Props) {
+export function Preview({ value }: Props) {
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []

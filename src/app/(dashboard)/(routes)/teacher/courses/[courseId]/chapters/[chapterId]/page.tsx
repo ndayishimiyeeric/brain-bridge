@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { boolean } from "zod";
 import ChapterTitleForm from "./_components/chapter-title-form";
+import ChapterDescriptionForm from "./_components/chapter-description-form";
 
 type Props = {
   params: {
@@ -71,6 +72,11 @@ const ChapterPage = async ({ params }: Props) => {
               <h2 className="text-xl">Customize your chapter</h2>
             </div>
             <ChapterTitleForm
+              initialData={chapter}
+              courseId={chapter.courseId}
+              chapterId={chapter.id}
+            />
+            <ChapterDescriptionForm
               initialData={chapter}
               courseId={chapter.courseId}
               chapterId={chapter.id}

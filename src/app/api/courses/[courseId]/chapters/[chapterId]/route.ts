@@ -6,7 +6,7 @@ import { ZodError } from "zod"
 export async function PATCH(req:Request, { params }: { params: { courseId: string, chapterId: string } }) {
   try {
     const { userId } = auth();
-    const { isPublised, values } = await req.json();
+    const { isPublised, ...values } = await req.json();
     const { courseId, chapterId } = params;
 
     if (!userId) {

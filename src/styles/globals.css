@@ -82,4 +82,8 @@ root {
   }
 }
 
+.ql-container {
+  font-size: 16px;
+}
+
 @import "~@uploadthing/react/styles.css";
