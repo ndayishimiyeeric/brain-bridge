@@ -37,6 +37,7 @@ export const UpdateChapterSchema = z.object({
   description: z.string().min(3, {
     message: "Description must be at least 3 characters long",
   }).optional(),
+  isFree: z.boolean().default(false).optional(),
 });
 
 export type UpdateChapterSchemaType = z.infer<typeof UpdateChapterSchema>;
