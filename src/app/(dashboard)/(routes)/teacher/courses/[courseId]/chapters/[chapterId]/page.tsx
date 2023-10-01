@@ -52,7 +52,7 @@ const ChapterPage = async ({ params }: Props) => {
       {!chapter.isPublished && (
         <Banner label="This chapter is not published yet" variant="warning" />
       )}
-      <div className="p-6">
+      <div className="container py-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
             <Link

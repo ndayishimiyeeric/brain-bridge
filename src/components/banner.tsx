@@ -32,8 +32,10 @@ export const Banner = ({ label, variant }: BannerProps) => {
   const Icon: React.ReactNode = iconMap[variant || "warning"];
   return (
     <div className={cn(bannerVariants({ variant }))}>
-      {Icon}
-      {label}
+      <div className="container flex justify-center">
+        {Icon}
+        {label}
+      </div>
     </div>
   );
 };
