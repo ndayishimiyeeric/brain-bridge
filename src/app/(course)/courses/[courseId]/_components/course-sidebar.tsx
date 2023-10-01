@@ -1,18 +1,13 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { Chapter, Course, UserProgress } from "@prisma/client";
 import { db } from "@/lib/db";
 import CourseSidebarItem from "./course-sidebar-item";
+import type { CourseChapterProgressProps } from "@/types";
 
-type Props = {
-  course: Course & {
-    chapters: (Chapter & {
-      userProgress: UserProgress[] | null;
-    })[];
-  };
-  progress: number;
-};
-const CourseSidebar = async ({ course, progress }: Props) => {
+const CourseSidebar = async ({
+  course,
+  progress,
+}: CourseChapterProgressProps) => {
   const { userId } = auth();
 
   if (!userId) {

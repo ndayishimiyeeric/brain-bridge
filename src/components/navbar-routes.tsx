@@ -15,7 +15,7 @@ const NavbarRoutes: React.FC<NavbarRoutesProps> = () => {
   const router = useRouter();
 
   const isTeacherMode = pathname?.startsWith("/teacher");
-  const isStudentMode = pathname?.includes("/chapter");
+  const isStudentMode = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
   return (
     <>
