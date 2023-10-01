@@ -94,7 +94,7 @@ const CoursePage = async ({ params }: Props) => {
           </div>
           <CourseActions
             courseId={params.courseId}
-            disabled={isCompleted}
+            disabled={!isCompleted}
             isPublished={course.isPublished}
           />
         </div>
