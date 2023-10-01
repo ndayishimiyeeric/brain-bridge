@@ -113,6 +113,7 @@ model Purchase {
   updatedAt DateTime @updatedAt
 
   @@unique([courseId])
+  @@unique([userId, courseId])
 }
 
 model StripeCustomer {

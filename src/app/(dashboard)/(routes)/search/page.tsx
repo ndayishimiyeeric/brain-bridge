@@ -34,7 +34,7 @@ const Search = async ({ searchParams }: SearchProps) => {
         <SearchInput />
       </div>
 
-      <div className="container py-6">
+      <div className="container py-6 space-y-4">
         <Categories items={categories} />
 
         <CoursesList items={courses} />
