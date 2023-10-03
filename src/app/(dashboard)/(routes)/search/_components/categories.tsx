@@ -3,16 +3,17 @@
 import React from "react";
 import { Category } from "@prisma/client";
 import {
-  FcManager,
+  FcPlus,
   FcCurrencyExchange,
   FcRadarPlot,
-  FcCalculator,
+  FcCustomerSupport,
   FcMultipleDevices,
-  FcSportsMode,
-  FcMusic,
-  FcMultipleCameras,
-  FcEngineering,
-  FcSimCardChip,
+  FcBusinessman,
+  FcReadingEbook,
+  FcFilmReel,
+  FcNews,
+  FcCloseUpMode,
+  FcCollaboration,
 } from "react-icons/fc";
 import { IconType } from "react-icons";
 import CategoryItem from "./category-item";
@@ -22,16 +23,17 @@ type Props = {
 };
 
 const iconMap: Record<Category["name"], IconType> = {
-  "Web Development": FcMultipleDevices,
-  "Computer Science": FcSimCardChip,
-  Photography: FcMultipleCameras,
-  Music: FcMusic,
-  Engineering: FcEngineering,
-  Accounting: FcManager,
-  Fitness: FcSportsMode,
-  Trading: FcCurrencyExchange,
-  Science: FcRadarPlot,
-  Mathematics: FcCalculator,
+  "Stem Education": FcRadarPlot,
+  "Humanities and Arts": FcFilmReel,
+  "Social Sciences": FcCollaboration,
+  "Health Sciences": FcPlus,
+  "Technology and IT": FcMultipleDevices,
+  "Environmental Studies": FcCloseUpMode,
+  "Education and Pedagogy": FcReadingEbook,
+  "Law and Legal Studies": FcBusinessman,
+  "Communication and Media": FcCustomerSupport,
+  "Economics and Finance": FcCurrencyExchange,
+  "Science and Technology Ethics": FcNews,
 };
 
 function Categories({ items }: Props) {
