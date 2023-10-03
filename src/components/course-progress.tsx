@@ -29,7 +29,7 @@ function CourseProgress({ variant, size, value }: CourseProgressProps) {
           sizeVariants[size || "default"],
         )}
       >
-        {Math.round(value || 0)} % completed
+        {Math.round(value)} % completed
       </p>
     </div>
   );

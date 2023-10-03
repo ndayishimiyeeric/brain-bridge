@@ -1,9 +1,9 @@
 "use client";
 import ReactConfetti from "react-confetti";
-import { useCanfettiStore } from "@/hooks";
+import { useConfettiStore } from "@/hooks";
 
 const ConfettiProvider = () => {
-  const confetti = useCanfettiStore();
+  const confetti = useConfettiStore();
 
   if (!confetti.isOpen) return null;
   return (

@@ -1,15 +1,15 @@
-import create from 'zustand';
+import { create } from "zustand";
 
-type CanfettiStore = {
+type ConfettiStore = {
   isOpen: boolean;
   OnOpen: () => void;
   OnClose: () => void;
-}
+};
 
-const useCanfettiStore = create<CanfettiStore>((set) => ({
+const useConfettiStore = create<ConfettiStore>((set) => ({
   isOpen: false,
   OnOpen: () => set({ isOpen: true }),
   OnClose: () => set({ isOpen: false }),
 }));
 
-export default useCanfettiStore;
+export default useConfettiStore;

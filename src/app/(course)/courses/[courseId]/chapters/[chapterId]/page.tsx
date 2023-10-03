@@ -8,6 +8,7 @@ import CourseUnrollBtn from "./_components/course-unroll-btn";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 import { File } from "lucide-react";
+import CourseProgressBtn from "@/app/(course)/courses/[courseId]/chapters/[chapterId]/_components/course-progress-btn";
 
 type ChapterPageProps = {
   params: {
@@ -66,7 +67,12 @@ const ChapterPage = async ({ params }: ChapterPageProps) => {
         <div className="p-4 flex flex-col md:flex-row items-center justify-between">
           <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
           {purchase ? (
-            <div></div>
+            <CourseProgressBtn
+              chapterId={chapterId}
+              courseId={courseId}
+              nextChapterId={nextChapter?.id}
+              isCompleted={!!userProgress?.isCompleted}
+            />
           ) : (
             <CourseUnrollBtn courseId={courseId} price={course.price!} />
           )}

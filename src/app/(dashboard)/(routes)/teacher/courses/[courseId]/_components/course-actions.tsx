@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useCanfettiStore } from "@/hooks";
+import { useConfettiStore } from "@/hooks";
 
 type Props = {
   disabled: boolean;
@@ -18,7 +18,7 @@ type Props = {
 
 const CourseActions = ({ disabled, courseId, isPublished }: Props) => {
   const router = useRouter();
-  const canfetti = useCanfettiStore();
+  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async () => {
@@ -46,7 +46,7 @@ const CourseActions = ({ disabled, courseId, isPublished }: Props) => {
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published", { duration: 5000 });
-        canfetti.OnOpen();
+        confetti.OnOpen();
       }
       router.refresh();
     } catch (error) {

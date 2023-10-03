@@ -1,2 +1,2 @@
-export {default as useCanfettiStore} from './use-canfetti-store';
-export {default as useDebounce} from './use-debounce';
+export { default as useConfettiStore } from "./use-confetti-store";
+export { default as useDebounce } from "./use-debounce";

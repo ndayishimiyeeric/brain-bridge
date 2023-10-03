@@ -48,7 +48,7 @@ const CourseLayout = async ({ children, params }: Props) => {
     return redirect("/");
   }
 
-  const progress = await getProgress(courseId, userId);
+  const progress = await getProgress(userId, courseId);
 
   return (
     <div className="h-full">
