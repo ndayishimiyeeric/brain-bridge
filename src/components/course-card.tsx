@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CourseWithProgressWithCategory } from "@/lib/actions/get-courses";
 import { IconBadge } from "@/components/icon-badge";
 import { formatPrice } from "@/lib/utils";
+import CourseProgress from "@/components/course-progress";
 
 type Props = {
   item: CourseWithProgressWithCategory;
@@ -41,7 +42,11 @@ function CourseCard({ item }: Props) {
           </div>
 
           {item.progress !== null ? (
-            <div></div>
+            <CourseProgress
+              value={item.progress}
+              variant={item.progress === 100 ? "success" : "default"}
+              size="sm"
+            />
           ) : (
             <div>
               {item.price === null || item.price === 0 ? (

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import CourseSidebarItem from "./course-sidebar-item";
 import type { CourseChapterProgressProps } from "@/types";
+import CourseProgress from "@/components/course-progress";
 
 const CourseSidebar = async ({
   course,
@@ -27,7 +28,11 @@ const CourseSidebar = async ({
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="p-8 flex flex-col border-b">
         <h1 className="font-semibold">{course.title}</h1>
-        {/* TODO: Check purchase and add progress   */}
+        {purchase && (
+          <div className="mt-10">
+            <CourseProgress value={progress} variant={"success"} />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col w-full">
