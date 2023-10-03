@@ -34,6 +34,7 @@ import { Input } from "@/components/ui/input";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -72,7 +73,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="container">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filter title..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -84,7 +85,9 @@ export function DataTable<TData, TValue>({
         <div className="ml-auto flex items-center space-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">Columns</Button>
+              <Button variant="outline">
+                <RxEyeClosed />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {table
@@ -114,8 +117,8 @@ export function DataTable<TData, TValue>({
               "bg-sky-700 hover:bg-sky-800 text-white hover:text-white",
             )}
           >
-            <PlusCircle className="mr-2 w-4 h-4" />
-            New Course
+            <PlusCircle className="w-4 h-4" />
+            <span className="hidden lg:block lg:ml-2">New Course</span>
           </Link>
         </div>
       </div>
