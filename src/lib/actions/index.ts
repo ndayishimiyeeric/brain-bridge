@@ -3,3 +3,4 @@ export { default as getCourses } from "./get-courses";
 export { default as getChapter } from "./get-chapter";
 export { default as getDashboardCourses } from "./get-dashboard-courses";
 export { default as getAnalytics } from "./get-analytics";
+export { default as isTeacher } from "./is-teacher";

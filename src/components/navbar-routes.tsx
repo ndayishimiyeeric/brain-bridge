@@ -1,18 +1,20 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
+import { useAuth, UserButton } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import SearchInput from "./search-input";
+import { isTeacher } from "@/lib/actions";
 
 type NavbarRoutesProps = {};
 
 const NavbarRoutes: React.FC<NavbarRoutesProps> = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const { userId } = useAuth();
 
   const isTeacherMode = pathname?.startsWith("/teacher");
   const isStudentMode = pathname?.includes("/courses");
@@ -32,12 +34,21 @@ const NavbarRoutes: React.FC<NavbarRoutesProps> = () => {
               Exit
             </Button>
           </Link>
-        ) : (
+        ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Teacher mode
             </Button>
           </Link>
+        ) : (
+          <a
+            href={`mailto:${process.env.REQUEST_TEACHER_MODE_EMAIL}`}
+            target="_blank"
+          >
+            <Button size="sm" variant="ghost">
+              Become a teacher
+            </Button>
+          </a>
         )}
         <UserButton afterSignOutUrl="/sign-in" />
       </div>

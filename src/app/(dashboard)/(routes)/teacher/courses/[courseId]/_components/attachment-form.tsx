@@ -29,7 +29,7 @@ const AttachmentForm = ({ initialData, courseId }: Props) => {
   };
 
   const formSchema = z.object({
-    attachemetUrl: z.string().url(),
+    attachmentUrl: z.string().url(),
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -62,7 +62,7 @@ const AttachmentForm = ({ initialData, courseId }: Props) => {
   return (
     <div className="mt-6 bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course attachements
+        Course attachments
         <Button variant="ghost" onClick={toggleEditing}>
           {isEditing && <>Cancel</>}
           {!isEditing && (
@@ -77,7 +77,7 @@ const AttachmentForm = ({ initialData, courseId }: Props) => {
         <>
           {initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
-              No attachements provided
+              No attachments provided
             </p>
           )}
           {initialData.attachments.length > 0 && (
@@ -115,7 +115,7 @@ const AttachmentForm = ({ initialData, courseId }: Props) => {
             endpoint="courseAttachment"
             onChange={(url) => {
               if (url) {
-                handleSubmit({ attachemetUrl: url });
+                handleSubmit({ attachmentUrl: url }).then((r) => null);
               }
             }}
           />

@@ -3,14 +3,15 @@ import { CreateCourseSchema } from "@/lib/varidators/course";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ZodError, z } from "zod";
+import { isTeacher } from "@/lib/actions";
 
-export async function POST(req:Request) {
+export async function POST(req: Request) {
   try {
-    const { userId } = auth()
+    const { userId } = auth();
     const payload = await req.json();
     const { title } = CreateCourseSchema.parse(payload);
-    
-    if (!userId) {
+
+    if (!userId || !isTeacher(userId)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -22,7 +23,6 @@ export async function POST(req:Request) {
     });
 
     return NextResponse.json(course, { status: 201 });
-    
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
