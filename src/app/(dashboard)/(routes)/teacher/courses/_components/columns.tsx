@@ -75,7 +75,7 @@ export const columns: ColumnDef<CourseTable["course"]>[] = [
         <Badge
           className={cn(
             "text-xs bg-slate-500 hover:bg-slate-500",
-            isPublished && "bg-sky-700 hover:bg-sky-700"
+            isPublished && "bg-sky-700 hover:bg-sky-700",
           )}
         >
           {isPublished ? "Published" : "Draft"}
@@ -105,6 +105,7 @@ export const columns: ColumnDef<CourseTable["course"]>[] = [
   },
   {
     id: "actions",
+    accessorKey: "Actions",
     cell: ({ row }) => {
       const { id } = row.original;
 

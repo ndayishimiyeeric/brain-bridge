@@ -1,5 +1,4 @@
 import React from "react";
-import { Course, Category } from "@prisma/client";
 import { CourseWithProgressWithCategory } from "@/lib/actions/get-courses";
 import CourseCard from "@/components/course-card";
 
@@ -10,7 +9,7 @@ interface Props {
 const CoursesList = ({ items }: Props) => {
   return (
     <div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
         {items.map((item, index) => (
           <CourseCard key={index} item={item} />
         ))}

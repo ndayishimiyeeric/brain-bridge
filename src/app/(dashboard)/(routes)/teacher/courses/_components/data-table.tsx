@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
 
   const [columnVisibility, setColumnVisibility] =
@@ -81,7 +81,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <div className="ml-auto space-x-2">
+        <div className="ml-auto flex items-center space-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">Columns</Button>
@@ -111,7 +111,7 @@ export function DataTable<TData, TValue>({
             href="/teacher/create"
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "bg-sky-700 hover:bg-sky-800 text-white hover:text-white"
+              "bg-sky-700 hover:bg-sky-800 text-white hover:text-white",
             )}
           >
             <PlusCircle className="mr-2 w-4 h-4" />
@@ -131,7 +131,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -147,10 +147,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="pl-8">
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

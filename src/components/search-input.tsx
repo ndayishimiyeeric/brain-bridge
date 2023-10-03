@@ -26,7 +26,7 @@ function SearchInput({}: Props) {
           categoryId: currentCategoryId,
         },
       },
-      { skipNull: true, skipEmptyString: true }
+      { skipNull: true, skipEmptyString: true },
     );
     router.push(url);
   }, [debouncedValue, currentCategoryId, pathname, router]);
@@ -38,7 +38,7 @@ function SearchInput({}: Props) {
         placeholder="Search..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="w-full md:w-[300px] rounded-full focus-visible:ring-slate-200"
+        className="w-full md:w-[300px] rounded-md focus-visible:ring-slate-200"
       />
     </div>
   );
